@@ -1,0 +1,33 @@
+.title-row{
+    background: lightskyblue;
+}
+
+.title-row-bold {
+    font-weight: bold;
+}
+
+.shares-column, .cost-column {
+    text-align: right;
+}
+
+.investment-row {
+    background: lightgray;
+    margin-bottom: 15px;
+}
+
+.asset-row{
+    background: white;
+}
+
+.investment-quantity, .investment-cost, .asset-quantity, .asset-cost {
+    text-align: right;
+}
+
+.mat-expansion-panel, .mat-expansion-panel-header {
+    box-sizing: border-box;
+}
+
+.total-cost{
+    text-align: right;
+}
+

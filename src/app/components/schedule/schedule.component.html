@@ -1,0 +1,105 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <div class="row title-row">
+      <div class="col-md-12">
+        <div class="row title-row-bold">
+         <div class="col-md-12">
+            Krakatoa Ventures Fund I, L.P.
+         </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            As of {{ investmentDate}}
+          </div>
+        </div>
+        <div class="row title-row-bold">
+          <div class="col-md-2">
+            Investment
+          </div>
+          <div class="col-md-3">
+            Asset
+          </div>
+          <div class="col-md-3">
+            Investment date
+          </div>
+          <div class="col-md-2 shares-column">
+            Shares
+          </div>
+          <div class="col-md-2 cost-column">
+            Cost
+          </div>
+        </div>      
+      </div>
+    </div>
+    <div class="row">
+        <mat-form-field>
+            <input 
+              matInput [matDatepicker]="picker" 
+              placeholder=""
+              (dateChange)="addEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button (click)="allExpandState = true">Expand All </button>
+        <button (click)="allExpandState = false">Collapse All </button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngFor='let investment of investments' class="row">
+          <div class="col-md-12">
+              <mat-expansion-panel [expanded]="allExpandState">
+                  <mat-expansion-panel-header class="row">
+                    <mat-panel-title class="col-md-6">
+                        {{ investment.name }}
+                    </mat-panel-title>
+                    <mat-panel-description class="col-md-6">
+                          <div class="col-md-5">
+                            <!--empty whitespace-->
+                          </div>
+                  <!--created a ternary for case of a company(Questindustries) having no shares or possibly cost, 
+                          the value null was displaying 0, but the example given shows nothing,
+                          adjusted accordingly to display empty string-->                          
+                          <div class="col-md-3 investment-quantity">
+                              {{ investment.quantity > 0 ? investment.quantity : "" }} $
+                          </div>
+                          <div class="col-md-4 investment-cost">
+                              {{ investment.cost.$ > 0 ? investment.cost.$ : "" }} $   
+                          </div>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                
+                    <div *ngFor='let issued_asset of investment.issued_assets' class="row asset-row">
+                      <div class="col-md-2">
+                          <!--empty whitespace-->
+                      </div>
+                      <div class="col-md-3">
+                        {{ issued_asset.asset_class }}
+                      </div>
+                      <div class="col-md-3">
+                        {{ issued_asset.investment_date }}
+                      </div>
+                  <!--created a ternary for case of a company(Questindustries) having no shares or possibly cost, 
+                          the value null was displaying 0, but the example given shows nothing,
+                          adjusted accordingly to display empty string-->
+                      <div class="col-md-2 asset-quantity">
+                        {{ issued_asset.quantity > 0 ? issued_asset.quantity : "" }} $
+                      </div>
+                      <div class="col-md-2 asset-cost">
+                        {{ issued_asset.cost.$ > 0 ? issued_asset.cost.$ : "" }} $
+                      </div>
+                    </div>              
+                </mat-expansion-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row .title-row-bold">
+      <div class="col-md-6">
+        Total 
+      </div>
+      <div class="col-md-6 total-cost">
+         $ {{ totalCost }}
+        </div>
+  </div>
+</div>
