@@ -60,10 +60,10 @@
                           the value null was displaying 0, but the example given shows nothing,
                           adjusted accordingly to display empty string-->                          
                           <div class="col-md-3 investment-quantity">
-                              {{ investment.quantity > 0 ? investment.quantity : "" }} $
+                              {{ (investment.quantity > 0 ? investment.quantity : "") | number }}
                           </div>
                           <div class="col-md-4 investment-cost">
-                              {{ investment.cost.$ > 0 ? investment.cost.$ : "" }} $   
+                              {{ (investment.cost.$ > 0 ? investment.cost.$ : "") | currency }}
                           </div>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
@@ -82,10 +82,10 @@
                           the value null was displaying 0, but the example given shows nothing,
                           adjusted accordingly to display empty string-->
                       <div class="col-md-2 asset-quantity">
-                        {{ issued_asset.quantity > 0 ? issued_asset.quantity : "" }} $
+                        {{ (issued_asset.quantity > 0 ? issued_asset.quantity : "") | number }}
                       </div>
                       <div class="col-md-2 asset-cost">
-                        {{ issued_asset.cost.$ > 0 ? issued_asset.cost.$ : "" }} $
+                        {{ (issued_asset.cost.$ > 0 ? issued_asset.cost.$ : "") | currency}}
                       </div>
                     </div>              
                 </mat-expansion-panel>
@@ -99,7 +99,7 @@
         Total 
       </div>
       <div class="col-md-6 total-cost">
-         $ {{ totalCost }}
+         {{ totalCost | currency}}
         </div>
   </div>
 </div>
